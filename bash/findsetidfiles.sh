@@ -19,10 +19,10 @@ echo "Setuid files:"
 echo "============="
 find / -type f -executable -perm -4000 -ls 2>/dev/null | sort -k 5
 echo ""
-echo "List of 12 biggest files"
+echo "12 biggest files"
 find / -type f -exec ls -l --block-size=MB {} + 2>/dev/null | sort -k5 -hr | head -n 12 | awk '{print $3, $5, $9}'
 echo ""
-echo "files size and error"
+echo "Files Size and Error"
 find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 5
 exit
 # for the task, add
