@@ -76,18 +76,13 @@
 #   External Name   : $myExternalName
 
 hostname=$(hostname)
-
 interface=$(ip a|awk '/: e/{gsub(/:/,"");print $2}')
-
 Lanaddress=$(ip a s $interface|awk '/inet /{gsub(/\/.*/,"");print $2}')
 Lanhostname=$(getent hosts $Lanaddress|awk '{print $2}')
-
 ExternalIP=$(curl -s icanhazip.com)
 ExternalName=$(getent hosts $ExternalIP|awk '{print $2}')
-
 RouterAddress=$(ip r | awk '/via /{gsub(/\/.*/,"");print $3}')
 RouterHostname=$(getent hosts $RouterAddress | awk '{print $2}')
-
 cat  <<EOF
 hostname        : $hostname
 LAN Hostname    : $Lanhostname
