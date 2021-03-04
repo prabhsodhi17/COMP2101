@@ -96,9 +96,7 @@ ipv4_hostname=$(getent hosts $ipv4_address | awk '{print $2}')
 #   e.g. grep -q mynetworknumber /etc/networks || (echo 'mynetworkname mynetworknumber' |sudo tee -a /etc/networks)
 
 network_address=$(ip route list dev $interface scope link|cut -d ' ' -f 1)
-
 network_number=$(cut -d / -f 1 <<<"$network_address")
-
 network_name=$(getent networks $network_number|awk '{print $1}')
 
 cat <<EOF
@@ -109,7 +107,6 @@ Name            : $ipv4_hostname
 Network Address : $network_address
 Network Name    : $network_name
 EOF
-
 done
 #####
 # End of per-interface report
